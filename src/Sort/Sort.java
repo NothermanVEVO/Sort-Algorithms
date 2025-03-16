@@ -7,6 +7,13 @@ import br.com.davidbuzatto.jsge.imgui.GuiTheme;
 public abstract class Sort extends EngineFrame {
 
     protected int array[];
+    protected int[] startArray;
+
+    protected boolean canStart = false;
+    protected boolean waitingToSort = true;
+    protected boolean isSorted = false;
+
+    protected int textAnim = 0;
 
     protected final static int WINDOW_WIDTH = 800;
     protected final static int WINDOW_HEIGHT = 450;

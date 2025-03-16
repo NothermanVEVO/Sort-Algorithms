@@ -6,10 +6,6 @@ public class SelectionSort extends Sort {
 
     private int tI = 0;
 
-    private boolean canStart = false;
-
-    private int[] startArray;
-
     public SelectionSort(int[] array){
         super (
             WINDOW_WIDTH,                 
@@ -38,12 +34,19 @@ public class SelectionSort extends Sort {
             tI = 0;
             countdown = 0;
             array = startArray.clone();
+            waitingToSort = false;
             canStart = true;
+            isSorted = false;
+            textAnim = 0;
         }
 
         if (canStart) {
             countdown += delta;
             if(countdown >= DELAY){
+                textAnim++;
+                if (textAnim > 3) {
+                    textAnim = 0;
+                }
                 countdown -= DELAY;
                 selectionSort(array);
             }
@@ -61,9 +64,18 @@ public class SelectionSort extends Sort {
             setFontSize(15);
             drawText(Integer.toString(array[i]), position.add(new Vector2((ARRAY_WIDTH / 2) - 7, (ARRAY_WEIGHT * array[i]) + 15)), WHITE);
         }
+        setFontSize(30);
+        if (waitingToSort) {
+            drawText("Waiting to sort...", new Vector2(15, WINDOW_HEIGHT - 30), RED);
+        } else if (canStart) {
+            drawText("Sorting" + (textAnim == 0 ? "" : textAnim == 1 ? "." : textAnim == 2 ? ".." : "..."), new Vector2(15, WINDOW_HEIGHT - 30), WHITE);
+        } else if (isSorted) {
+            drawText("Sorted!", new Vector2(15, WINDOW_HEIGHT - 30), GREEN);
+        }
     }
 
     private void selectionSort(int[] arr){
+        isSorted = false;
         int n = arr.length;
         for (int i = tI; i < n - 1;) {
           
@@ -91,6 +103,8 @@ public class SelectionSort extends Sort {
             tI++;
             return;
         }
+        canStart = false;
+        isSorted = true;
     }
     
 }

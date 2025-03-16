@@ -44,16 +44,16 @@ public class Select extends EngineFrame {
         bubbleButton.update(delta);
         mergeButton.update(delta);
 
-        if (selectionButton.isMouseDown()) {
+        if (selectionButton.isMousePressed()) {
             new SelectionSort(new int[]{9, 3, 1, 5, 4, 8, 10, 9, 2});
             setState(ICONIFIED);
-        } else if (insertionButton.isMouseDown()) {
+        } else if (insertionButton.isMousePressed()) {
             new InsertionSort(new int[]{9, 3, 1, 5, 4, 8, 10, 9, 2});
             setState(ICONIFIED);
-        } else if (bubbleButton.isMouseDown()) {
+        } else if (bubbleButton.isMousePressed()) {
             new BubbleSort(new int[]{9, 3, 1, 5, 4, 8, 10, 9, 2});
             setState(ICONIFIED);
-        } else if (mergeButton.isMouseDown()) {
+        } else if (mergeButton.isMousePressed()) {
             new MergeSort(new int[]{9, 3, 1, 5, 4, 8, 10, 9, 2});
             setState(ICONIFIED);
         }
