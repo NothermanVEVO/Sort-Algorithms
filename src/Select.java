@@ -2,6 +2,7 @@ import Sort.BubbleSort;
 import Sort.InsertionSort;
 import Sort.MergeSort;
 import Sort.SelectionSort;
+import Sort.Sort;
 import br.com.davidbuzatto.jsge.core.engine.EngineFrame;
 import br.com.davidbuzatto.jsge.imgui.GuiButton;
 
@@ -35,6 +36,7 @@ public class Select extends EngineFrame {
 
     @Override
     public void create() {
+        Sort.setMainFrame(this);
     }
 
     @Override

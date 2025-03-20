@@ -1,10 +1,17 @@
 package Sort;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
+import javax.swing.JFrame;
+
 import br.com.davidbuzatto.jsge.core.engine.EngineFrame;
 import br.com.davidbuzatto.jsge.imgui.GuiButton;
 import br.com.davidbuzatto.jsge.imgui.GuiTheme;
 
 public abstract class Sort extends EngineFrame {
+
+    protected static JFrame mainFrame;
 
     protected int array[];
     protected int[] startArray;
@@ -35,12 +42,51 @@ public abstract class Sort extends EngineFrame {
         super(windowWidth, windowHeight, windowTitle, targetFPS, antialiasing);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         startButton.apply(GuiTheme.buildLightTheme());
+        createEventHandler();
     }
 
     public Sort(int windowWidth, int windowHeight, String windowTitle, int targetFPS, boolean antialiasing,
             boolean resizable, boolean fullScreen, boolean undecorated, boolean alwaysOnTop) {
         super(windowWidth, windowHeight, windowTitle, targetFPS, antialiasing, resizable, fullScreen, undecorated, alwaysOnTop);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        createEventHandler();
+    }
+
+    private void createEventHandler(){
+        addWindowListener(new WindowListener(){
+            @Override
+            public void windowOpened(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                mainFrame.setState(JFrame.NORMAL);
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+        });
+    }
+
+    public static void setMainFrame(JFrame mainFrame){
+        Sort.mainFrame = mainFrame;
     }
     
 }
